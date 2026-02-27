@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0a192f; /* Dark Navy Blue */
+    color: #ff69b4; /* Pink Text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #112240;
+    padding: 40px;
+    border-radius: 15px;
+    width: 500px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.3);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #ccd6f6;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 20px;
+    background: white;
+    color: black;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #233554;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: red;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.strength-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.entropy {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #64ffda;
+}
+
+#feedback {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ffb3c6;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecurePassPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/4b8b5b1c6f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1><i class="fa-solid fa-shield-halved"></i> SecurePassPro</h1>
+    <p class="subtitle">Advanced Password Strength Analyzer</p>
+
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <div class="strength-text">
+        Strength: <span id="strength-label">None</span>
+    </div>
+
+    <div class="progress-bar">
+        <div id="progress"></div>
+    </div>
+
+    <div class="entropy">
+        <i class="fa-solid fa-bolt"></i> Entropy: 
+        <span id="entropy-value">0</span> bits
+    </div>
+
+    <div id="feedback"></div>
+</div>
+
+<script>
+document.getElementById("password").addEventListener("input", function() {
+
+    let password = this.value;
+    let score = 0;
+    let feedback = [];
+
+    if(password.length >= 8) score++;
+    else feedback.push("Minimum 8 characters required.");
+
+    if(/[A-Z]/.test(password)) score++;
+    else feedback.push("Add uppercase letters.");
+
+    if(/[0-9]/.test(password)) score++;
+    else feedback.push("Add numbers.");
+
+    if(/[^A-Za-z0-9]/.test(password)) score++;
+    else feedback.push("Add special characters.");
+
+    let strengthLabel = document.getElementById("strength-label");
+    let progress = document.getElementById("progress");
+    let entropyValue = document.getElementById("entropy-value");
+
+    let entropy = Math.round(password.length * Math.log2(94));
+    entropyValue.innerText = entropy;
+
+    progress.style.width = (score * 25) + "%";
+
+    if(score <= 1){
+        strengthLabel.innerText = "Weak 🔴";
+        strengthLabel.style.color = "red";
+        progress.style.background = "red";
+    }
+    else if(score == 2 || score == 3){
+        strengthLabel.innerText = "Moderate 🟠";
+        strengthLabel.style.color = "orange";
+        progress.style.background = "orange";
+    }
+    else{
+        strengthLabel.innerText = "Strong 🟢";
+        strengthLabel.style.color = "green";
+        progress.style.background = "green";
+    }
+
+    document.getElementById("feedback").innerHTML = feedback.join("<br>");
+});
+</script>
+
+</body>
+</html>
